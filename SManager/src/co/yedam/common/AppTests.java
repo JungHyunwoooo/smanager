@@ -174,4 +174,9 @@ update tbl_student set    birth_date = to_date('1992-10-13', 'yyyy-mm-dd'),std_n
 		}
 		// 조회기능 끝.
 	}
+	
+	/*
+	 * 메인메뉴와 서버메뉴의 출력구분하기 위한 메소드.
+	 */
+	public class Utils
 }

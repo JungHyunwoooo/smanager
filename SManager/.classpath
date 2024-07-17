@@ -7,5 +7,15 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="D:/selfJAVA/ojdbc6_g.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/lombok-1.18.34.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/asm-7.1.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/cglib-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/commons-logging-1.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/javassist-3.30.2-GA.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/log4j-api-2.23.1.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/ognl-3.4.2.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/reload4j-1.2.25.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/lib/slf4j-api-2.0.12.jar"/>
+	<classpathentry kind="lib" path="D:/selfJAVA/mybatis-3.5.16/mybatis-3.5.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.StudentMapper">
+
+  <select id="studentList" resultType="com.yedam.vo.StudentVO">
+    select * from tbl_student order by std_no
+  </select>
+  
+  <select id="selectOne" parameterType="string" resultType="com.yedam.vo.StudentVO">
+    select * from tbl_student where std_no=#{stdNo}
+  </select>
+  
+  
+  <insert id="insertStudent" parameterType="com.yedam.vo.StudentVO">
+  	insert into tbl_student (std_no, std_name, std_phone)
+	values(#{stdNo}, #{stdName}, #{stdPhone})
+  </insert>
+  
+  <!-- 
+  UPDATE 문 기본식 (수정) 
+  UPDATE 테이블명
+  SET 컬럼명 = 변경값
+  	, 컬럼명 = 변경값
+  WHERE 가 없다면 전체가 변경되고 있으면 그 조건에 맞는 애들만 변경
+  WHERE 조건1
+  	AND 조건2
+  	
+  	조건 컬럼명 = 조건값
+  		급여 > 조건값
+   -->
+  <update id="updateStudent" parameterType="com.yedam.vo.StudentVO">
+  	update tbl_student
+   	set    std_phone = #{stdPhone}
+	where  std_no = #{stdNo}
+  </update>
+  
+  <delete id="deleteStudent" parameterType="com.yedam.vo.StudentVO">
+  
+  </delete>
+</mapper>
