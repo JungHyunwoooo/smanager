@@ -14,6 +14,57 @@
 		from tbl_board
 		order by board_no
 	</select>
+	
+	<!-- 페이징 목록 -->
+	<select id="selectListPaging" parameterType="com.yedam.common.SearchDTO">
+	SELECT b.*
+        FROM 
+            (
+                SELECT rownum AS rn, a.*
+                FROM (
+                    SELECT *
+                    FROM tbl_board
+                    WHERE
+                    <choose>
+                        <when test="searchCondition == 'T' .toString()">
+                            title LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'W'.toString()">
+                            writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'TW'.toString()">
+                            title LIKE '%' || #{keyword} || '%'    OR writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <otherwise>1 = 1</otherwise>
+                    </choose>
+                    ORDER BY board_no DESC 
+                    ) a
+                ) b
+        WHERE b.rn> (#{page} -1 ) * 5
+        <![CDATA[
+            AND b.rn <= (#{page} * 5)
+        ]]>
+	</select>
+	
+	<!--  페이징 계산용 전체건수. -->
+	<select id="selectTotalCount" parameterType="com.yedam.common.SearchDTO">
+		select count(1)
+		from   tbl_board
+		 WHERE
+                    <choose>
+                        <when test="searchCondition == 'T' .toString()">
+                            title LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'W'.toString()">
+                            writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'TW'.toString()">
+                            title LIKE '%' || #{keyword} || '%'    OR writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <otherwise>1 = 1</otherwise>
+                    </choose>
+	</select>
+	
 	<select id="selectBoard" parameterType="int" resultType="com.yedam.vo.BoardVO">
 		select board_no
 		,title

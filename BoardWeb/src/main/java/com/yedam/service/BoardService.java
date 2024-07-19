@@ -2,6 +2,7 @@ package com.yedam.service;
 
 import java.util.List;
 
+import com.yedam.common.SearchDTO;
 import com.yedam.vo.BoardVO;
 
 /*
@@ -10,7 +11,8 @@ import com.yedam.vo.BoardVO;
 * 숙제 : 536페이지 MVC에 자세히 읽고 오세요.
 */
 public interface BoardService {
-	List<BoardVO> boardList();
+	List<BoardVO> boardList(SearchDTO search);
+	int totalCount(SearchDTO search); // 페이징 계산용
 	boolean addBoard(BoardVO board);
 	boolean modifyBoard(BoardVO board);
 	boolean removeBoard(int boardNo);

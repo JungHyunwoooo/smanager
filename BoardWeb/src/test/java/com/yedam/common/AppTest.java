@@ -11,7 +11,12 @@ public class AppTest {
 	public static void main(String[] args) {
 		
 		BoardService svc = new BoardServiceImpl();
-		svc.boardList().forEach(System.out::println);
+		SearchDTO search = new SearchDTO();
+		search.setSearchCondition("TW");
+		search.setKeyword("웹은");
+		search.setPage(1);
+		
+		svc.boardList(search).forEach(System.out::println);
 		System.out.println("- End -");
 		
 //		SqlSession sqlSession = //
