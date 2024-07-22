@@ -4,6 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.StudentMapper">
 
+  <select id="selectMember" resultType="int">
+  	select count(1)
+  	from tbl_member
+  	where member_id = #{id}
+  	and   member_pw = #{pw}
+  </select>
+  
+
   <select id="studentList" resultType="com.yedam.vo.StudentVO">
     select * from tbl_student order by std_no
   </select>
