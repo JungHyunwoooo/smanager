@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- loginForm.jsp -->
-<jsp:include page="../includes/header.jsp" />
 <h3>로그인화면(loginForm.jsp)</h3>
 
 <c:if test="${!empty msg }">
@@ -28,4 +27,3 @@
 	</tr>
 </table>
 </form>
-<jsp:include page="../includes/footer.jsp" />

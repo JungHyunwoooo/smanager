@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.StudentMapper">
 
-  <select id="selectMember" resultType="int">
-  	select count(1)
+  <select id="selectMember" resultType="com.yedam.vo.MemberVO">
+  	select *
   	from tbl_member
   	where member_id = #{id}
   	and   member_pw = #{pw}
@@ -47,4 +47,47 @@
   <delete id="deleteStudent" parameterType="com.yedam.vo.StudentVO">
   
   </delete>
+  
+  	<select id="selectListPaging"
+		parameterType="com.yedam.common.SearchDTO" resultType="com.yedam.vo.MemberVO">
+		SELECT b.*
+		FROM
+		(
+		SELECT rownum AS rn, a.*
+		FROM (
+		SELECT *
+		FROM tbl_member
+		
+		) a
+		) b
+		WHERE b.rn> (#{page} -1 ) * 5
+        <![CDATA[
+            AND b.rn <= (#{page} * 5)
+        ]]>
+	</select>
+
+	<!-- 페이징 계산용 전체건수. -->
+	<select id="selectTotalCount"
+		parameterType="com.yedam.common.SearchDTO">
+		select count(1)
+		from tbl_member
+	</select>
+	
+		<sql id="selectCondition">
+		WHERE
+		<choose>
+			<when test="searchCondition == 'T' .toString()">
+				title LIKE '%' || #{keyword} || '%'
+			</when>
+			<when test="searchCondition == 'W'.toString()">
+				writer LIKE '%' || #{keyword} || '%'
+			</when>
+			<when test="searchCondition == 'TW'.toString()">
+				title LIKE '%' || #{keyword} || '%' OR writer LIKE
+				'%' || #{keyword} ||
+				'%'
+			</when>
+			<otherwise>1 = 1</otherwise>
+		</choose>
+	</sql>
 </mapper>

@@ -10,49 +10,47 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
 import com.yedam.common.SearchDTO;
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
+import com.yedam.service.MemberService;
+import com.yedam.service.MemberServiceImpl;
+import com.yedam.vo.MemberVO;
 
-public class BoardListControl implements Control {
+public class MemberListControl implements Control {
 
 	@Override
-	public void exec(HttpServletRequest req, HttpServletResponse resp) // 
-			throws ServletException, IOException {
+	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String page = req.getParameter("page");
 		page = page == null ? "1" : page;
 		String sc = req.getParameter("searchCondition");
 		String kw = req.getParameter("keyword");
+		String order = req.getParameter("order");
 		
 		SearchDTO search = new SearchDTO();
 		search.setKeyword(kw);
 		search.setPage(Integer.parseInt(page));
 		search.setSearchCondition(sc);
 		
-		// 검색정보 값 넘기기
-		req.setAttribute("myName", "정현우");
+		MemberService svc = new MemberServiceImpl();
 		
-		BoardService svc = new BoardServiceImpl();
 		
 		// 전체 조회
-		List<BoardVO> list = svc.boardList(search);
+		List<MemberVO> list = svc.memberCheck(search);
 		
 		//조회된 값 넘기기
-		req.setAttribute("boardList", list);
+		req.setAttribute("memberList", list);
 
 		// 값 넘기기
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
+		req.setAttribute("order", order);
 		
 		// paging
 		int totalCnt = svc.totalCount(search);
 		PageDTO pageDTO = new PageDTO(Integer.parseInt(page), totalCnt);
 		req.setAttribute("paging", pageDTO);
 		
-		req.getRequestDispatcher("board/boardList.tiles")
-				.forward(req, resp); // 페이지를 재지정(이동)하겠다는 의미
+		req.getRequestDispatcher("admin/memberList.tiles").forward(req, resp);
+
 	}
 
-
-}//end of class
+}

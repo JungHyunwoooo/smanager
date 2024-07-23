@@ -20,6 +20,7 @@ import com.yedam.control.DeleteBoardControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginForm;
 import com.yedam.control.LogoutControl;
+import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.RemoveBoardControl;
 import com.yedam.control.StudentListControl;
@@ -66,6 +67,11 @@ public class FrontController extends HttpServlet {
 		
 		//로그아웃
 		map.put("/logout.do", new LogoutControl()); // 로그아웃 기능.
+		
+		// 관리자가 사용하는 기능들..ex)회원목록
+		map.put("/memberList.do", new MemberListControl());
+		
+		
 	}
 
 	@Override

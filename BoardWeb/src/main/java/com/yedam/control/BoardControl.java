@@ -26,7 +26,7 @@ public class BoardControl implements Control {
 		req.setAttribute("page", page);
 		
 		
-		req.getRequestDispatcher("WEB-INF/jsp/board.jsp").forward(req, resp); // 페이지를 재지정하겠다는 의미
+		req.getRequestDispatcher("board/boardList.tiles").forward(req, resp); // 페이지를 재지정하겠다는 의미
 	}
 
 }

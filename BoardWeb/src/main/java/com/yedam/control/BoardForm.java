@@ -12,7 +12,7 @@ public class BoardForm implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp")
+		req.getRequestDispatcher("board/boardForm.tiles")
 		.forward(req, resp); // 페이지를 재지정하겠다는 의미
 	}
 

@@ -13,7 +13,7 @@ public class LoginForm implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp").forward(req, resp); // 페이지를 재지정하겠다는 의미
+		req.getRequestDispatcher("board/loginForm.tiles").forward(req, resp); // 페이지를 재지정하겠다는 의미
 	}
 
 }
