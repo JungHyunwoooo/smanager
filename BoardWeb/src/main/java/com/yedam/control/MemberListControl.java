@@ -19,11 +19,12 @@ public class MemberListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String page = req.getParameter("page");
+		String page = req.getParameter("page");  // 값을 받는 부분
 		page = page == null ? "1" : page;
-		String sc = req.getParameter("searchCondition");
-		String kw = req.getParameter("keyword");
-		String order = req.getParameter("order");
+		String sc = req.getParameter("searchCondition"); // 값을 받는 부분
+		String kw = req.getParameter("keyword"); // 값을 받는 부분
+		String order = req.getParameter("order"); // 값을 받는 부분
+		String res = req.getParameter("res");
 		
 		SearchDTO search = new SearchDTO();
 		search.setKeyword(kw);
@@ -43,6 +44,7 @@ public class MemberListControl implements Control {
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		req.setAttribute("order", order);
+		req.setAttribute("res", res);
 		
 		// paging
 		int totalCnt = svc.totalCount(search);

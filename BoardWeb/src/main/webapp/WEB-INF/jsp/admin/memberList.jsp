@@ -5,12 +5,20 @@
 <h3>회원목록...</h3>
 <table class="table table-success table-striped table-hover">
 
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="memberList.do?res=User">사용자</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="memberList.do?res=Admin">관리자</a>
+  </li>
+
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">아이디</th>
-				<th scope="col">이름</th>
+				<th scope="col"><a class="nav-link" href="memberList.do?order=Id">아이디</a></th>
 				<th scope="col">비밀번호</th>
+				<th scope="col"><a class="nav-link" href="memberList.do?order=Name">이름</a></th>
 				<th scope="col">권한</th>
 			</tr>
 		</thead>

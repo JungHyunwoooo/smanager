@@ -36,7 +36,7 @@ public class BoardListControl implements Control {
 		BoardService svc = new BoardServiceImpl();
 		
 		// 전체 조회
-		List<BoardVO> list = svc.boardList(search);
+		List<BoardVO> list = svc.boardList(search); //서비스 - 매퍼
 		
 		//조회된 값 넘기기
 		req.setAttribute("boardList", list);
