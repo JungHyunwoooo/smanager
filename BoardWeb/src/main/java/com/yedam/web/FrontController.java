@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Control;
 import com.yedam.control.ActionControl;
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddReplyControl;
+import com.yedam.control.AddStudent;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
@@ -23,7 +25,11 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.RemoveBoardControl;
+import com.yedam.control.RemoveReplyCotrol;
+import com.yedam.control.RemoveStudent;
+import com.yedam.control.ReplyListControl;
 import com.yedam.control.ScriptControl;
+import com.yedam.control.StudentJson;
 import com.yedam.control.StudentListControl;
 import com.yedam.control.UpdateBoardControl;
 
@@ -75,9 +81,28 @@ public class FrontController extends HttpServlet {
 		// 자바스크립트 연습하는 페이지 호출.
 		map.put("/javascript.do", new ScriptControl());
 		
+		// 학생정보를 반환해주는 페이지 (json).
+		map.put("/studentJson.do", new StudentJson());
+		
+		// 학생정보(학번을 기준으로) 삭제하는 기능.
+		map.put("/removeStudent.do", new RemoveStudent());
+		
+		//등록.
+		map.put("/addStudent.do", new AddStudent());
+		
+		// - 댓글 - //
+		//목록.
+		map.put("/replyList.do", new ReplyListControl());
+		//등록
+		map.put("/addReply.do", new AddReplyControl());
+		//삭제
+		map.put("/removeReply.do", new RemoveReplyCotrol());
 		
 		
-	}
+		
+		
+		
+	}// end of init
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

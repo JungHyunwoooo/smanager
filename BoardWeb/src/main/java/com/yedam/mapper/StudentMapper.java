@@ -12,6 +12,7 @@ public interface StudentMapper {
 	List<StudentVO> studentList();
 	StudentVO selectOne(String sno);
 	int insertStudent(StudentVO svo);
+	int deleteStudent(String sno);
 	
 	// 로그인체크를 위한 메소드 이름은?
 	MemberVO selectMember(@Param("id") String id, @Param("pw") String pw);

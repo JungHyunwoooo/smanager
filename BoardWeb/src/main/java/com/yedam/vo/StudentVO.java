@@ -15,5 +15,5 @@ public class StudentVO {
 	private String stdName; // std_name
 	private String stdPhone;
 	private String address;
-	private String birthdate;
+	private String birthDate;
 }

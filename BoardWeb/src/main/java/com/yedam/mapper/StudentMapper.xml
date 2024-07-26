@@ -22,8 +22,8 @@
   
   
   <insert id="insertStudent" parameterType="com.yedam.vo.StudentVO">
-  	insert into tbl_student (std_no, std_name, std_phone)
-	values(#{stdNo}, #{stdName}, #{stdPhone})
+  	insert into tbl_student (std_no, std_name, std_phone, birth_date)
+	values(#{stdNo}, #{stdName}, #{stdPhone}, #{birthDate})
   </insert>
   
   <!-- 
@@ -44,8 +44,9 @@
 	where  std_no = #{stdNo}
   </update>
   
-  <delete id="deleteStudent" parameterType="com.yedam.vo.StudentVO">
-  
+  <delete id="deleteStudent" parameterType="String">
+  	delete from tbl_student
+  	where  std_no = #{stdNo}
   </delete>
   
   	<select id="selectListPaging"

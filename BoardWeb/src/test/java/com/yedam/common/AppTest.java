@@ -1,23 +1,27 @@
 package com.yedam.common;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.yedam.mapper.BoardMapper;
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
+import com.yedam.service.ReplyService;
+import com.yedam.service.ReplyServiceImpl;
+import com.yedam.vo.ReplyVO;
 
 public class AppTest {
 	public static void main(String[] args) {
+		ReplyService svc = new ReplyServiceImpl();
 		
-		BoardService svc = new BoardServiceImpl();
 		SearchDTO search = new SearchDTO();
-		search.setSearchCondition("TW");
-		search.setKeyword("웹은");
-		search.setPage(1);
+		search.setBno(148);
+		search.setPage(5);
 		
-		svc.boardList(search).forEach(System.out::println);
+		svc.replyList(search).forEach(System.out::println);
+		
 		System.out.println("- End -");
+//		BoardService svc = new BoardServiceImpl();
+//		SearchDTO search = new SearchDTO();
+//		search.setSearchCondition("TW");
+//		search.setKeyword("웹은");
+//		search.setPage(1);
+		
+//		svc.boardList(search).forEach(System.out::println);
 		
 //		SqlSession sqlSession = //
 //				DataSource.getInstance().openSession(true);

@@ -8,6 +8,7 @@ import com.yedam.common.DataSource;
 import com.yedam.common.SearchDTO;
 import com.yedam.mapper.StudentMapper;
 import com.yedam.vo.MemberVO;
+import com.yedam.vo.StudentVO;
 
 public class MemberServiceImpl implements MemberService{
 	SqlSession sqlSession = //
@@ -27,6 +28,23 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int totalCount(SearchDTO search) {
 		return mapper.selectTotalCount(search);
+	}
+
+	@Override
+	public List<StudentVO> studentList() {
+		// TODO Auto-generated method stub
+		return mapper.studentList();
+	}
+
+	@Override
+	public boolean removeStudent(String sno) {
+		// TODO Auto-generated method stub
+		return mapper.deleteStudent(sno) == 1;
+	}
+
+	@Override
+	public boolean addStudent(StudentVO svo) {
+		return mapper.insertStudent(svo) == 1;
 	}
 
 }
