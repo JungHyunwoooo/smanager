@@ -31,4 +31,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.deleteReply(replyNo) == 1;
 	}
 
+	@Override
+	public int replyTotalCnt(int boardNo) {
+		// TODO Auto-generated method stub
+		return mapper.totalReplyCnt(boardNo);
+	}
+
 }
