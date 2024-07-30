@@ -68,7 +68,7 @@ function deleteReplyFnc(e) {
 		if (result.retCode == 'Success') {
 			alert('삭제 성공!!!');
 			//document.querySelector('li[data-rno="' + rno + '"]').remove();
-			showPage();
+			showPage();	
 		} else {
 			alert('삭제 실패!!!');
 		}

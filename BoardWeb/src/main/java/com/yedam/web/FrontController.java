@@ -19,6 +19,7 @@ import com.yedam.control.BoardControl;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.DeleteBoardControl;
+import com.yedam.control.ImageDownload;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginForm;
 import com.yedam.control.LogoutControl;
@@ -101,6 +102,8 @@ public class FrontController extends HttpServlet {
 		// 페이징을 위한 전체건수.
 		map.put("/pagingCount.do", new PagingCount());
 		
+		//이미지 다운로드하는 기능.
+		map.put("/imageDownload.do", new ImageDownload());
 		
 		
 		
