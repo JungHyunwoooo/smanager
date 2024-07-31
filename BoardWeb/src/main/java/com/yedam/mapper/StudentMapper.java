@@ -1,6 +1,7 @@
 package com.yedam.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -20,4 +21,7 @@ public interface StudentMapper {
 	List<MemberVO> selectListPaging(SearchDTO search); //페이지 정보를 넣어주면 5건씩 출력하는 것
 	// 페이징 계산하기 위한 전체건수.
 	int selectTotalCount(SearchDTO search);
+	
+	// 차트 (작성자별 건수)
+	List<Map<String, Object>> selectCountByMember();
 }

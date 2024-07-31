@@ -1,19 +1,23 @@
 package com.yedam.common;
 
-import com.yedam.service.ReplyService;
-import com.yedam.service.ReplyServiceImpl;
-import com.yedam.vo.ReplyVO;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.yedam.service.MemberService;
+import com.yedam.service.MemberServiceImpl;
 
 public class AppTest {
 	public static void main(String[] args) {
-		ReplyService svc = new ReplyServiceImpl();
-		
-		SearchDTO search = new SearchDTO();
-		search.setBno(148);
-		search.setPage(5);
-		
-		svc.replyList(search).forEach(System.out::println);
-		
+		MemberService svc = new MemberServiceImpl();
+		List<Map<String, Object>> list = svc.getCountByMember();
+		for(Map<String, Object> map : list) {
+			System.out.println("-----------------");
+			Set<String> keyset = map.keySet();
+			for(String key : keyset) {
+				System.out.println(key + ", " + map.get(key));
+			}
+		}
 		System.out.println("- End -");
 //		BoardService svc = new BoardServiceImpl();
 //		SearchDTO search = new SearchDTO();
