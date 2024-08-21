@@ -25,6 +25,7 @@ public class RemoveReplyCotrol implements Control {
 		// retCode: Success, retVal: ReplyVO
 		// retCode: Fail, retVal: null
 		String rvo = req.getParameter("rvo");  //변수선언
+		System.out.println(rvo);	
 		Map<String, Object> map = new HashMap<>();
 
 		try {
