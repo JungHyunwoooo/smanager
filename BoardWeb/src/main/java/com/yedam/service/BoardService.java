@@ -17,4 +17,10 @@ public interface BoardService {
 	boolean modifyBoard(BoardVO board);
 	boolean removeBoard(int boardNo);
 	BoardVO getBoard(int boardNo);
+	
+	List<BoardVO> fullCalendar();
+	boolean insertCalendar(BoardVO board);
+	boolean removeCalendar(BoardVO board);
+	
+	
 }//end of BoardService

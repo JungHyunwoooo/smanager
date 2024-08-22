@@ -75,7 +75,8 @@
 	</select>
 
 	<insert id="insertBoard" parameterType="com.yedam.vo.BoardVO">
-		insert into tbl_board(board_no, title, writer, content, image)
+		insert into
+		tbl_board(board_no, title, writer, content, image)
 		values(board_seq.nextval, #{title}, #{writer}, #{content}, #{image} )
 	</insert>
 
@@ -98,5 +99,34 @@
 		<!-- #{매개변수명} -->
 	</delete>
 
+	<select id="fullCalendar" resultType="com.yedam.vo.BoardVO">
+		select title
+		,start_date
+		as"start"
+		,end_date as "end"
+		from tbl_schedule
+	</select>
 
+	<insert id="insertCalendar" parameterType="com.yedam.vo.BoardVO">
+		insert into
+		tbl_schedule(title, start_date, end_date)
+		values(#{title}, #{start},
+		#{end})
+	</insert>
+
+	<delete id="removeCalendar" parameterType="com.yedam.vo.BoardVO">
+		delete tbl_schedule
+		where title = #{title}
+		and start_date = #{start}
+		and end_date = #{end}
+	</delete>
+
+	<select id="selectSchedule" parameterType="com.yedam.vo.BoardVO"
+		resultType="int">
+		select count(1)
+		from tbl_schedule
+		where title = #{title}
+		and start_date = #{start}
+		and end_date = #{end}
+	</select>
 </mapper>

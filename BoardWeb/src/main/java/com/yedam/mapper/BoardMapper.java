@@ -19,4 +19,9 @@ public interface BoardMapper {
 	int updateBoard(BoardVO board);
 	int deleteBoard(int boardNo);
 	BoardVO selectBoard(int boardNo);
+	
+	// fullCalendar 연습
+	List<BoardVO> fullCalendar();
+	int insertCalendar(BoardVO board);
+	int removeCalendar(BoardVO board);
 }

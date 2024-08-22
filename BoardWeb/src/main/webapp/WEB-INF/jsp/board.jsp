@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<style>
-div.reply ul {
-	list-style-type: none;
-}
-
-div.reply span {
-	display: inline-block;
-}
-</style>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
 
 
 
@@ -72,28 +69,33 @@ div.reply span {
 <div class="container reply">
 	<!-- 등록.html -->
 	<div class="header">
-		<input class="col-sm-8" id="content">
-		<button class="col-sm-3" id="addReply">댓글등록</button>
+		<input class="col-sm-6" id="content">
+		<button class="col-sm-2" id="addReply">댓글등록</button>
+		<button class="col-sm-2" id="deleteReply">댓글삭제</button>
 	</div>
 	<!-- 목록.html -->
-	<div class="content">
-		<ul id="replyList">
-			<li style="display: none;">
-			<span class="col-sm-2">글번호</span> 
-			<span class="col-sm-5">댓글내용</span> 
-			<span class="col-sm-2">작성자</span> 
-			<span class="col-sm-2"><button>삭제</button></span>
-			</li>
-		</ul>
-	</div>
-	<!-- 댓글페이징.html -->
-	<div class="footer">
-		<nav aria-label="...">
-			<ul class="pagination" align="center">
-			</ul>
-		</nav>
-	</div>
+	<table id="example" class="display" style="width: 100%">
+		<thead>
+			<tr>
+				<th>댓글번호</th>
+				<th>댓글내용</th>
+				<th>작성자</th>
+				<th>작성일시</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>댓글번호</th>
+				<th>댓글내용</th>
+				<th>작성자</th>
+				<th>작성일시</th>
+				<th>삭제</th>
+			</tr>
+		</tfoot>
+	</table>
 </div>
+
 <script>
 	const bno = "${board.boardNo }";
 	const replyer = "${logid}";
@@ -101,8 +103,104 @@ div.reply span {
 			.addEventListener('click', function(e) {
 				location.href = 'modifyBoard.do?bno=${board.boardNo }';
 			});
-</script>
 
-<!--  <script src="js/boardService.js"></script>
-<script src="js/board.js"></script> -->
-<script src = "js/boardJquery.js"></script>
+	let table = $('#example')
+			.DataTable(
+					{
+						ajax : 'replyList.do?bno=' + bno,
+						columns : [ {
+							data : 'replyNo'
+						}, {
+							data : 'replyContent'
+						}, {
+							data : 'replyer'
+						}, {
+							data : 'replyDate'
+						} ],
+						lengthMenu : [ [ 5, 10, 20, -1 ], [ 5, 10, 20, 'All' ] ],
+						columnDefs : [ {
+							render : function(data, type, row) {
+								return '<button class="btn btn-danger" onclick="deleteRow('
+										+ row.replyNo + ')">삭제</button>';
+							},
+							targets : 4
+						} ]
+					});
+	// 댓글등록 이벤트.
+	$('#addReply').on('click', function() {
+		let content = $('#content').val();
+		$.ajax({
+			url : 'addReply.do',
+			data : {
+				replyer : replyer,
+				content : content,
+				bno : bno
+			},
+			dataType : 'json',
+			success : function(result) {
+				console.log(result.retVal);
+				let rs = result.retVal;
+				table.row.add({
+					'replyNo' : rs.replyNo,
+					'replyContent' : rs.replyContent,
+					'replyer' : rs.replyer,
+					'replyDate' : new Date()
+				}).draw(false);
+			},
+			error : function(err) {
+
+			}
+		});
+
+	})
+
+	// 댓글삭제 이벤트.
+	$('#example tbody').on('click', 'tr', function() {
+
+		if ($(this).hasClass('selected')) {
+			$(this).removeClass('selected');
+		} else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+
+	$('#deleteReply').click(function() {
+		let rvo = table.$('tr.selected').children('td:eq(0)').text();
+		console.log(rvo);
+		$.ajax({
+			url : 'removeReply.do',
+			data : {
+				rvo : rvo
+			},
+			dataType : 'json',
+			success : function(result) {
+				table.row('.selected').remove().draw(false);
+				console.log(result);
+			},
+			error : function(err) {
+
+			}
+		});
+	});
+	function deleteRow(rvo) {
+		$.ajax({
+			url : 'removeReply.do',
+			data : {
+				rvo : rvo
+			},
+			dataType : 'json',
+			success : function(result) {
+				if (result.retCode == 'Success') {
+					alert('삭제완료!!');
+					table.row('.selected').remove().draw(false);
+				} else {
+					alert('삭제할 댓글이 없다잉!')
+				}
+			},
+			error : function(err) {
+
+			}
+		});
+	}
+</script>

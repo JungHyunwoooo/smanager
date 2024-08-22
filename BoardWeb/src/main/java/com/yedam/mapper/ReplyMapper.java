@@ -6,6 +6,7 @@ import com.yedam.common.SearchDTO;
 import com.yedam.vo.ReplyVO;
 
 public interface ReplyMapper {
+	// datatable 연습용.
 	List<ReplyVO> selectList(int boardNo); //댓글조회
 	List<ReplyVO> selectListPaging(SearchDTO search); //원본 글 번호, 페이지 정보.
 	int insertReply(ReplyVO rvo); //댓글등록

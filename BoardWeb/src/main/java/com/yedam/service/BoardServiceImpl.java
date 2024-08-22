@@ -25,8 +25,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectListPaging(search);
 	}
 	
-	
-
 	@Override
 	public boolean addBoard(BoardVO board) {
 		return mapper.insertBoard(board) == 1;
@@ -47,11 +45,24 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectBoard(boardNo);
 	}
 
-
-
 	@Override
 	public int totalCount(SearchDTO search) {
 		return mapper.selectTotalCount(search);
+	}
+
+	@Override
+	public List<BoardVO> fullCalendar() {
+		return mapper.fullCalendar();
+	}
+
+	@Override
+	public boolean insertCalendar(BoardVO board) {
+		return mapper.insertCalendar(board) == 1;
+	}
+
+	@Override
+	public boolean removeCalendar(BoardVO board) {
+		return mapper.removeCalendar(board) == 1;
 	}
 
 }
