@@ -125,10 +125,6 @@ input {
 	background-color: #bbb;
 }
 </style>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 <body>
 
@@ -160,80 +156,54 @@ input {
 		}
 
 		// Click on a close button to hide the current list item
-		/*var close = document.getElementsByClassName("close");
+		var close = document.getElementsByClassName("close");
 		var i;
 		for (i = 0; i < close.length; i++) {
 			close[i].onclick = function() {
 				var div = this.parentElement;
 				div.style.display = "none";
 			}
-		}*/
-		
-		//Jquery
-		$('li').append($('<span/>').text('\u00D7')
-                                   .addClass('close')
-                                   //.on('click', e => {
-              	                   //$(e.target).parent().css('display', 'none');
-                                   // })
-                                    );
+		}
 
-		// Add a "checked" symbol when clicking on a list item
-		/*var list = document.querySelector('ul');
+		 Add a "checked" symbol when clicking on a list item
+		var list = document.querySelector('ul');
 		list.addEventListener('click', function(ev) {
-			console.log(ev.target);
 			if (ev.target.tagName === 'LI') {
 				ev.target.classList.toggle('checked'); // toggle : 없으면 추가, 있으면 빼는 기능을 함.
 			}
-		}, false); */
-		
-		//Jquery
-		$('ul').on('click', 'li', function() {
-			$(this).toggleClass('checked');
-		})
-		$('ul').on('click', 'span.close', function(e) {
-			e.stopPropagation(); // -> 이벤트가 상위에 영향을 미치는 것을 차단하는 기능
-		  $(this).parent().hide(500);//css('display', 'none');
-		})
+		}, false);
 		//document.querySelectorAll('li').forEach(list => {
-		//  list.addEventListener('click', function(ev) {
-		//    ev.target.classList.toggle('checked');
+			//list.addEventListener('click', function(ev) {
+				//ev.target.classList.toggle('checked');
 			//});
 		//})
 
 		// Create a new list item when clicking on the "Add" button
 		function newElement() {
-			var inputValue = $('#myInput').val();
-			
-			if (inputValue === '') {
-				alert("뭐시든 쓰랑께!");
-				return;
-			}
-			let span = $('<span />').text('\u00D7').addClass('close');
-			/*var li = document.createElement("li");
+			var li = document.createElement("li");
+			var inputValue = document.getElementById("myInput").value;
 			var t = document.createTextNode(inputValue);
 			li.appendChild(t);
-				document.getElementById("myUL").appendChild(li);*/
-				$('#myUL').append($('<li />').text(inputValue) //
-						                     .append(span) //li 태그생성.
-						         );
-			//document.getElementById("myInput").value = "";
-			$('#myInput').val("");
+			if (inputValue === '') {
+				alert("You must write something!");
+			} else {
+				document.getElementById("myUL").appendChild(li);
+			}
+			document.getElementById("myInput").value = "";
 
-			/*var span = document.createElement("SPAN");
+			var span = document.createElement("SPAN");
 			var txt = document.createTextNode("\u00D7");
 			span.className = "close";
 			span.appendChild(txt);
-			li.appendChild(span);*/
+			li.appendChild(span);
 
 	
-			/*for (i = 0; i < close.length; i++) {
+			for (i = 0; i < close.length; i++) {
 				close[i].onclick = function() {
 					var div = this.parentElement;
 					div.style.display = "none";
 				}
-			}*/
-			
-			
+			}
 		}
 	</script>
 
